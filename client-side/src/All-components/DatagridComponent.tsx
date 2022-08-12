@@ -70,7 +70,15 @@ const  DatagridComponent = () => {
         
     }
 
+    const handleonchange= (e: any) => {
+        setOption(e.target.value)
+        handleSort(e)
+        }
     
+        const handleonvalue= (e: any) => {
+            setUserInput((values) => ({...values, [e.target.name]: e.target.value}))
+            
+        }
 
 
     const indexOfLastData = activePage * dataPerPage
@@ -85,12 +93,9 @@ const  DatagridComponent = () => {
             <p className="namecreator">SAMSON-OKEJI DATAGRID @KLAS</p>
         <div className="container">
             <div className="option">
-                <span style={{color: "#6b7280", marginRight: "5px", marginTop: "10px"}}>Sort</span>
+                <div style={{color: "#6b7280", marginRight: "5px", marginTop: "10px"}}>Sort</div>
                 <select name="" id=""  className="classic select"
-                onChange={(e) => {
-                    setOption(e.target.value)
-                    handleSort(e)
-                    }} value={option}>
+                onChange={handleonchange} value={option}>
                     <option className="optiongender" style={{color:"white", background:"#654321"}} value="" >All</option>
                     <option style={{color:"white", background:"#654321"}} value="male">MALE</option>
                     <option style={{color:"white", background:"#654321"}} value="female">FEMALE</option>
@@ -116,10 +121,7 @@ const  DatagridComponent = () => {
                             <div className="cellInput2">
                                 <input 
                                     defaultValue={item.firstname} 
-                                    onChange={(e) => {
-                                        setUserInput((values) => ({...values, [e.target.name]: e.target.value}))
-                                        
-                                    }} 
+                                    onChange={handleonvalue} 
                                     onBlur={(e) => {
                                         handleSave(e, item, index)
                                     }}
@@ -128,10 +130,7 @@ const  DatagridComponent = () => {
                             <div className="cellInput3">
                                 <input 
                                     defaultValue={item.lastname} 
-                                    onChange={(e) => {
-                                        setUserInput((values) => ({...values, [e.target.name]: e.target.value}))
-                                       
-                                    }} 
+                                    onChange={handleonvalue} 
                                     onKeyDown={(e) => {
                                         handleSave(e, item, index)
                                     }}
@@ -140,10 +139,7 @@ const  DatagridComponent = () => {
                             <div className="cellInput4">
                                 <input 
                                     defaultValue={item.gender} 
-                                    onChange={(e) => {
-                                        setUserInput((values) => ({...values, [e.target.name]: e.target.value}))
-                                        
-                                    }} 
+                                    onChange={handleonvalue} 
                                     onKeyDown={(e) => {
                                         handleSave(e, item, index)
                                     }} 
